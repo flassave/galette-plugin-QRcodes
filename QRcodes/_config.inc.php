@@ -3,7 +3,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Configuration file for PassagesDeGrades plugin
+ * Configuration file for QRcodes plugin
  *
  * PHP version 5
  *
@@ -25,7 +25,7 @@
  * along with Galette. If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugins
- * @package   PassagesDeGrades
+ * @package   QRcodes
  *
  * @author    Frédéric LASSAVE <f.lassave@free.fr>
  * @copyright 2011 The Galette Team
@@ -35,15 +35,15 @@
  * @since     Available since 0.8.2.3
  */
  
-define('PLUGIN_PREFIX', 'PassagesDeGrades_');
+define('PLUGIN_PREFIX', 'QRcodes_');
 define('dynamic_fields', 'dynamic_fields');
 define('field_id', 'field_id');
 define('item_id', 'item_id');
 define('id', 'id');
 define('field_contents_4', 'field_contents_4');
-define('PassagesDeGrades_notes', 'PassagesDeGrades_notes');
+define('QRcodes_notes', 'QRcodes_notes');
 define('id_adh', 'id_adh');
-define('PASSAGESDEGRADES_SMARTY_PREFIX', 'plugins|PassagesDeGrades');
+define('QRCODES_SMARTY_PREFIX', 'plugins|QRcodes');
 define('uv1','uv1');
 define('uv2','uv2');
 define('uv3','uv3');
@@ -53,6 +53,6 @@ define('uv6','uv6');
 
 
 
-require_once 'classes/PassagesDeGrades.class.php';
+require_once 'classes/QRcodes.class.php';
 
 ?>

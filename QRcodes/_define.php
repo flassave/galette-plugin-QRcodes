@@ -3,7 +3,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Configuration file for PassagesDeGrades plugin
+ * Configuration file for QRcodes plugin
  *
  * PHP version 5
  *
@@ -25,7 +25,7 @@
  * along with Galette. If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugins
- * @package   PassagesDeGrades
+ * @package   QRcodes
  *
  * @author    Frédéric LASSAVE <f.lassave@free.fr>
  * @copyright 2011 The Galette Team
@@ -36,13 +36,13 @@
  */
 
 $this->register(
-    'Passages De Grades',  	   //Name
-    'Notes UVs',  			   //Short description
-    'Frédéric LASSAVE',        //Author
-    '0.1',                     //Version
-    '0.8.2.3',                 //Galette compatible version
-    '2016-11-27',              //Release date
-    null                       //Permissions needed - not yet implemented
+    'QRcodes',  	  			//Name
+    'Génération de QRcodes',	//Short description
+    'Frédéric LASSAVE',			//Author
+    '0.1',						//Version
+    '0.8.2.3',					//Galette compatible version
+    '2017-03-13',				//Release date
+    null						//Permissions needed - not yet implemented
 );
 
 ?>

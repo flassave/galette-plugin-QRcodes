@@ -3,7 +3,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Configuration file for PassagesDeGrades plugin
+ * Configuration file for QRcodes plugin
  *
  * PHP version 5
  *
@@ -25,7 +25,7 @@
  * along with Galette. If not, see <http://www.gnu.org/licenses/>.
  *
  * @category  Plugins
- * @package   PassagesDeGrades
+ * @package   QRcodes
  *
  * @author    Frédéric LASSAVE <f.lassave@free.fr>
  * @copyright 2011 The Galette Team
@@ -36,8 +36,8 @@
  */
  
 $_tpl_assignments = array(
-    'PassagesDeGrades_tpl_dir' => '__plugin_templates_dir__',
-    'PassagesDeGrades_dir'     => '__plugin_dir__'
+    'QRcodes_tpl_dir' => '__plugin_templates_dir__',
+    'QRcodes_dir'     => '__plugin_dir__'
 );
 
 ?>
