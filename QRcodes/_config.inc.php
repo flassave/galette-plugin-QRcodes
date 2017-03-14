@@ -44,15 +44,5 @@ define('field_contents_4', 'field_contents_4');
 define('QRcodes_notes', 'QRcodes_notes');
 define('id_adh', 'id_adh');
 define('QRCODES_SMARTY_PREFIX', 'plugins|QRcodes');
-define('uv1','uv1');
-define('uv2','uv2');
-define('uv3','uv3');
-define('uv4','uv4');
-define('uv5','uv5');
-define('uv6','uv6');
-
-
-
-
 
 ?>
