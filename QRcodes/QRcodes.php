@@ -41,6 +41,7 @@ use Galette\Entity\Texts;
 use Galette\Repository\Members;
 use Galette\Repository\PdfModels;
 use Galette\Entity\DynamicFields;
+use Galette\Filters\MembersList;
 
 
 define('GALETTE_BASE_PATH', '../../');
@@ -54,7 +55,6 @@ require_once GALETTE_BASE_PATH . 'includes/galette.inc.php';
 require_once '_config.inc.php';
 
 //Chargement des fonctions
-include("includes/fonctions.inc.php");
 include("includes/t0k4rt-phpqrcode-d213c48/qrlib.php");
 
 //récupération du header de la page précédente
@@ -119,7 +119,67 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	}
 	
 } else {
+	global $zdb;
 	
-	echo "toto";
+	
+	$select = $zdb->select(Adherent::TABLE);
+	$result = $zdb->execute($select);
+	
+	foreach ($result as $r){
+		
+		$id_adh = $r->id_adh;
+		$dyn_fields = new DynamicFields();
+
+		$deps = array(
+			'picture'   => true,
+			'groups'    => true,
+			'dues'      => true,
+			'parent'    => true,
+			'children'  => true
+		);
+		$member = new Adherent((int)$id_adh, $deps);
+
+		// flagging fields visibility
+		$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
+		$visibles = $fc->getVisibilities();
+		// declare dynamic field values
+		$adherent['dyn'] = $dyn_fields->getFields('adh', $id_adh, true);
+
+		// - declare dynamic fields for display
+		$disabled['dyn'] = array();
+		$dynamic_fields = $dyn_fields->prepareForDisplay(
+			'adh',
+			$adherent['dyn'],
+			$disabled['dyn'],
+			0
+		);
+
+		$id_m = $member->id;
+
+		//Créer QRcode PassagesDeGrades
+		QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
+
+		if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
+			echo "Impossible de renommer.";
+		}
+
+		//Créer QRcode Téléphone
+		QRcode::png("tel:$member->phone", "$id_adh.tel.png", "L", 4, 4);
+
+		if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
+			echo "Impossible de renommer.";
+		}
+
+		//Créer QRcode Mail
+		QRcode::png("mailto:$member->email", "$id_adh.mail.png", "L", 4, 4);
+
+		if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
+			echo "Impossible de renommer.";
+		}
+		
+	}
+	
+	header('location: '.$qstring);
+	die();
 }
 ?>
