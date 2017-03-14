@@ -103,4 +103,12 @@ $lang['Créer passage de grades'] = 'Créer passage de grades';
 
 $lang['- '] = '- ';
 
+$lang['QRcodes'] = 'QRcodes';
+
+$lang['QR codes'] = 'QR codes';
+
+$lang['Générateur de QRcodes'] = 'Générateur de QRcodes';
+
+$lang['Créer QRcodes Adhérents'] = 'Créer QRcodes Adhérents';
+
 ?>

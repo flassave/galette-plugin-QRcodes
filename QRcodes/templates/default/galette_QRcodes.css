@@ -1,13 +1,13 @@
-#btn_plugins_PASSAGESDEGRADES {
+#btn_plugins_QRcodes {
     padding-top:30px!important;
     padding-left: 0!important;
     display: block;
     background-position: 50% 5px, 50% 50%!important;
     background-repeat: no-repeat, repeat!important;
 }
-#btn_plugins_PASSAGESDEGRADES {
-    background-image:url(images/grades_120x31.png), url("../../../../templates/default/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png");
+#btn_plugins_QRcodes {
+    background-image: url(images/coucou.png), url("../../../../templates/default/jquery-ui/images/ui-bg_glass_75_e6e6e6_1x400.png");
 }
-#btn_plugins_PASSAGESDEGRADES.ui-state-hover {
-    background-image: url(images/grades_120x31.png), url("../../../../templates/default/jquery-ui/images/ui-bg_glass_75_ffb619_1x400.png");
+#btn_plugins_QRcodes.ui-state-hover {
+    background-image: url(images/coucou.png), url("../../../../templates/default/jquery-ui/images/ui-bg_glass_75_ffb619_1x400.png");
 }
