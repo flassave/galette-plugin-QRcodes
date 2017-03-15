@@ -99,18 +99,36 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	}
 
 	//Créer QRcode Téléphone
-	QRcode::png("tel:$member->phone", "$id_adh.tel.png", "L", 4, 4);
+	$phone = $member->phone;
 
-	if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
-		echo "Impossible de renommer.";
-	}
+	//if member phone is missing but there is a parent,
+	//take the parent phone
+	if (empty($phone) && $member->hasParent()){
+		$phone = $member->parent->phone;
+		}
+	if (!empty($phone)){
+	QRcode::png("tel:$phone", "$id_adh.tel.png", "L", 4, 4);
+
+		if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
+			echo "Impossible de renommer.";
+		}			
+	}	
 
 	//Créer QRcode Mail
-	QRcode::png("mailto:$member->email", "$id_adh.mail.png", "L", 4, 4);
+	$email = $member->email;
 
-	if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
-		echo "Impossible de renommer.";
-	}
+	//if member email is missing but there is a parent,
+	//take the parent email
+	if (empty($email) && $member->hasParent()){
+		$email = $member->parent->email;
+		}
+	if (!empty($email)){
+	QRcode::png("mailto:$email", "$id_adh.mail.png", "L", 4, 4);
+
+		if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
+			echo "Impossible de renommer.";
+		}
+	}	
 	
 	//Si appel depuis la liste adhérents, retour à la liste adhérents
 	if (isset($_GET['enr']) AND $_GET['enr'] == 1){
@@ -164,17 +182,35 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		}
 
 		//Créer QRcode Téléphone
-		QRcode::png("tel:$member->phone", "$id_adh.tel.png", "L", 4, 4);
+		$phone = $member->phone;
 
-		if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
-			echo "Impossible de renommer.";
-		}
+		//if member phone is missing but there is a parent,
+		//take the parent phone
+		if (empty($phone) && $member->hasParent()){
+			$phone = $member->parent->phone;
+			}
+		if (!empty($phone)){
+		QRcode::png("tel:$phone", "$id_adh.tel.png", "L", 4, 4);
+
+			if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
+				echo "Impossible de renommer.";
+			}			
+		}	
 
 		//Créer QRcode Mail
-		QRcode::png("mailto:$member->email", "$id_adh.mail.png", "L", 4, 4);
+		$email = $member->email;
 
-		if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
-			echo "Impossible de renommer.";
+		//if member email is missing but there is a parent,
+		//take the parent email
+		if (empty($email) && $member->hasParent()){
+			$email = $member->parent->email;
+			}
+		if (!empty($email)){
+		QRcode::png("mailto:$email", "$id_adh.mail.png", "L", 4, 4);
+
+			if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
+				echo "Impossible de renommer.";
+			}
 		}
 		
 	}
