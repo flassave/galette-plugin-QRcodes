@@ -39,9 +39,9 @@ $this->register(
     'QRcodes',  	  			//Name
     'Génération de QRcodes',	//Short description
     'Frédéric LASSAVE',			//Author
-    '1.1',						//Version
+    '1.2',						//Version
     '0.8.2.3',					//Galette compatible version
-    '2017-03-15',				//Release date
+    '2017-03-29',				//Release date
     null						//Permissions needed - not yet implemented
 );
 

@@ -92,17 +92,22 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	$id_m = $member->id;
 
 	//Créer QRcode PassagesDeGrades
-	QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
+	if (!file_exists("datas/qrcodes/$id_adh.png")){
+		QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
 
-	if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
-		echo "Impossible de renommer.";
+		if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
+			echo "Impossible de renommer.";
+		}
 	}
-
+	
 	//Créer QRcode Téléphone
 	$phone = $member->phone;
 
 	//if member phone is missing but there is a parent,
 	//take the parent phone
+	if (file_exists("datas/qrcodes/$id_adh.tel.png")){
+		unlink("datas/qrcodes/$id_adh.tel.png");
+	}
 	if (empty($phone) && $member->hasParent()){
 		$phone = $member->parent->phone;
 		}
@@ -119,6 +124,9 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 	//if member email is missing but there is a parent,
 	//take the parent email
+	if (file_exists("datas/qrcodes/$id_adh.mail.png")){
+		unlink("datas/qrcodes/$id_adh.mail.png");
+	}
 	if (empty($email) && $member->hasParent()){
 		$email = $member->parent->email;
 		}
@@ -175,17 +183,23 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		$id_m = $member->id;
 
 		//Créer QRcode PassagesDeGrades
-		QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
+		if (!file_exists("datas/qrcodes/$id_adh.png")){
+			unlink("datas/qrcodes/$id_adh.png");
+			QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
 
-		if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
-			echo "Impossible de renommer.";
+			if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
+				echo "Impossible de renommer.";
+			}
 		}
-
+			
 		//Créer QRcode Téléphone
 		$phone = $member->phone;
 
 		//if member phone is missing but there is a parent,
 		//take the parent phone
+		if (file_exists("datas/qrcodes/$id_adh.tel.png")){
+			unlink("datas/qrcodes/$id_adh.tel.png");
+		}
 		if (empty($phone) && $member->hasParent()){
 			$phone = $member->parent->phone;
 			}
@@ -202,6 +216,9 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 		//if member email is missing but there is a parent,
 		//take the parent email
+		if (file_exists("datas/qrcodes/$id_adh.mail.png")){
+			unlink("datas/qrcodes/$id_adh.mail.png");
+		}
 		if (empty($email) && $member->hasParent()){
 			$email = $member->parent->email;
 			}
