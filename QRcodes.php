@@ -80,7 +80,11 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	$member = new Adherent((int)$id_adh, $deps);
 
 	// flagging fields visibility
-	$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
+	if (!version_compare(GALETTE_VERSION, '0.8.3', '<')) {
+	    $fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
+    } else {
+	    $fc = new FieldsConfig($zdb, Adherent::TABLE, $members_fields, $members_fields_cats);
+    }
 	$visibles = $fc->getVisibilities();
 	// declare dynamic field values
 	$adherent['dyn'] = $dyn_fields->getFields('adh', $id_adh, true);
