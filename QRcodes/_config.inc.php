@@ -45,4 +45,4 @@ define('QRcodes_notes', 'QRcodes_notes');
 define('id_adh', 'id_adh');
 define('QRCODES_SMARTY_PREFIX', 'plugins|QRcodes');
 
-?>
+define('PLUGIN_QRCODE_DATA_PATH', GALETTE_DATA_PATH . 'plugin-qrcodes/');

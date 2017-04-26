@@ -39,5 +39,3 @@ $_tpl_assignments = array(
     'QRcodes_tpl_dir' => '__plugin_templates_dir__',
     'QRcodes_dir'     => '__plugin_dir__'
 );
-
-?>

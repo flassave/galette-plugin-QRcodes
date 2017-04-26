@@ -44,5 +44,3 @@ $this->register(
     '2017-03-29',				//Release date
     null						//Permissions needed - not yet implemented
 );
-
-?>

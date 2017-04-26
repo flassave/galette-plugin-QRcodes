@@ -57,6 +57,11 @@ require_once '_config.inc.php';
 //Chargement des fonctions
 include("includes/t0k4rt-phpqrcode-d213c48/qrlib.php");
 
+//create data directory
+if (!file_exists(PLUGIN_QRCODE_DATA_PATH)) {
+    mkdir(PLUGIN_QRCODE_DATA_PATH);
+}
+
 //récupération du header de la page précédente
 $qstring = $_SERVER['HTTP_REFERER'];
 
@@ -92,12 +97,9 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	$id_m = $member->id;
 
 	//Créer QRcode PassagesDeGrades
-	if (!file_exists("datas/qrcodes/$id_adh.png")){
-		QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
+	if (!file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
 
-		if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
-			echo "Impossible de renommer.";
-		}
+		    QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", PLUGIN_QRCODE_DATA_PATH . "$id_adh.png", "L", 4, 4);
 	}
 	
 	//Créer QRcode Téléphone
@@ -105,38 +107,30 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 	//if member phone is missing but there is a parent,
 	//take the parent phone
-	if (file_exists("datas/qrcodes/$id_adh.tel.png")){
-		unlink("datas/qrcodes/$id_adh.tel.png");
+	if (file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png")){
+		unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png");
 	}
 	if (empty($phone) && $member->hasParent()){
 		$phone = $member->parent->phone;
 		}
 	if (!empty($phone)){
-	QRcode::png("tel:$phone", "$id_adh.tel.png", "L", 4, 4);
-
-		if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
-			echo "Impossible de renommer.";
-		}			
-	}	
+	    QRcode::png("tel:$phone", PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png", "L", 4, 4);
+	}
 
 	//Créer QRcode Mail
 	$email = $member->email;
 
 	//if member email is missing but there is a parent,
 	//take the parent email
-	if (file_exists("datas/qrcodes/$id_adh.mail.png")){
-		unlink("datas/qrcodes/$id_adh.mail.png");
+	if (file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png")){
+		unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png");
 	}
 	if (empty($email) && $member->hasParent()){
 		$email = $member->parent->email;
 		}
 	if (!empty($email)){
-	QRcode::png("mailto:$email", "$id_adh.mail.png", "L", 4, 4);
-
-		if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
-			echo "Impossible de renommer.";
-		}
-	}	
+	    QRcode::png("mailto:$email", PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png", "L", 4, 4);
+	}
 	
 	//Si appel depuis la liste adhérents, retour à la liste adhérents
 	if (isset($_GET['enr']) AND $_GET['enr'] == 1){
@@ -183,13 +177,10 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		$id_m = $member->id;
 
 		//Créer QRcode PassagesDeGrades
-		if (!file_exists("datas/qrcodes/$id_adh.png")){
-			unlink("datas/qrcodes/$id_adh.png");
-			QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", "$id_adh.png", "L", 4, 4);
+		if (!file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
+			unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png");
 
-			if (!rename("$id_adh.png", "datas/qrcodes/$id_adh.png")){
-				echo "Impossible de renommer.";
-			}
+			    QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", PLUGIN_QRCODE_DATA_PATH . "$id_adh.png", "L", 4, 4);
 		}
 			
 		//Créer QRcode Téléphone
@@ -197,18 +188,14 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 		//if member phone is missing but there is a parent,
 		//take the parent phone
-		if (file_exists("datas/qrcodes/$id_adh.tel.png")){
-			unlink("datas/qrcodes/$id_adh.tel.png");
+		if (file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png")){
+			unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png");
 		}
 		if (empty($phone) && $member->hasParent()){
 			$phone = $member->parent->phone;
 			}
 		if (!empty($phone)){
-		QRcode::png("tel:$phone", "$id_adh.tel.png", "L", 4, 4);
-
-			if (!rename("$id_adh.tel.png", "datas/qrcodes/$id_adh.tel.png")){
-				echo "Impossible de renommer.";
-			}			
+		    QRcode::png("tel:$phone", PLUGIN_QRCODE_DATA_PATH . "$id_adh.tel.png", "L", 4, 4);
 		}	
 
 		//Créer QRcode Mail
@@ -216,18 +203,14 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 		//if member email is missing but there is a parent,
 		//take the parent email
-		if (file_exists("datas/qrcodes/$id_adh.mail.png")){
-			unlink("datas/qrcodes/$id_adh.mail.png");
+		if (file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png")){
+			unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png");
 		}
 		if (empty($email) && $member->hasParent()){
 			$email = $member->parent->email;
 			}
 		if (!empty($email)){
-		QRcode::png("mailto:$email", "$id_adh.mail.png", "L", 4, 4);
-
-			if (!rename("$id_adh.mail.png", "datas/qrcodes/$id_adh.mail.png")){
-				echo "Impossible de renommer.";
-			}
+		    QRcode::png("mailto:$email", PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png", "L", 4, 4);
 		}
 		
 	}
@@ -235,4 +218,3 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	header('location: '.$qstring);
 	die();
 }
-?>
