@@ -45,10 +45,17 @@ use Galette\Filters\MembersList;
 
 define('GALETTE_BASE_PATH', '../../');
 define('QRCODES_PREFIX', 'plugins|QRcodes');
-//Lien du plugin PassagesDeGrades, à écrire (en dur, en fonction du serveur), pour coder dans le QRcode 
-define('PASSAGESDEGRADES_PREFIX','http://ascjudocazeres.legtux.org/galette/plugins/PassagesDeGrades/');
 
 require_once GALETTE_BASE_PATH . 'includes/galette.inc.php';
+
+$modules = $plugins->getModules();
+
+foreach ($modules as $key => $module) {
+    if ($module['name'] == 'Galette Grades') {
+        //Plugin PassagesDeGrades is installed, keep its path.
+        define('PASSAGESDEGRADES_PREFIX', '../' . $key . '/');
+    }
+}
 
 //Constants and classes from plugin
 require_once '_config.inc.php';
@@ -81,8 +88,9 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 
 	//Créer QRcode PassagesDeGrades
 	if (!file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
-
+        if (defined('PASSAGESDEGRADES_PREFIX')) {
 		    QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", PLUGIN_QRCODE_DATA_PATH . "$id_adh.png", "L", 4, 4);
+        }
 	}
 	
 	//Créer QRcode Téléphone
@@ -142,8 +150,9 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		//Créer QRcode PassagesDeGrades
 		if (!file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
 			unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png");
-
+            if (defined('PASSAGESDEGRADES_PREFIX')) {
 			    QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", PLUGIN_QRCODE_DATA_PATH . "$id_adh.png", "L", 4, 4);
+            }
 		}
 			
 		//Créer QRcode Téléphone
