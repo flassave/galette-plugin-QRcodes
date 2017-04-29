@@ -36,7 +36,7 @@
  */
 
 $this->register(
-    'QRcodes',  	  			//Name
+    'Galette QRCodes',  	  			//Name
     'Génération de QRcodes',	//Short description
     'Frédéric LASSAVE',			//Author
     '1.2.1',					//Version

@@ -1,11 +1,11 @@
 <li>
 {if $login->isAdmin() or $login->isStaff()}
-	<img src="{$galette_base_path}{$QRcodes_dir}datas/qrcodes/{$member->id}.tel.png"><b>Tel.</b></img>
+    <img src="{$galette_base_path}{$QRcodes_dir}picture.php?id_adh={$member->id}&amp;code=phone&amp;rand={$time}" class="picture" alt=""/> <strong>Tel.</strong>
 {/if}
 </li>
 <li>
 {if $login->isAdmin() or $login->isStaff()}
-	<img src="{$galette_base_path}{$QRcodes_dir}datas/qrcodes/{$member->id}.mail.png"><b>Mail</b></img>
+    <img src="{$galette_base_path}{$QRcodes_dir}picture.php?id_adh={$member->id}&amp;code=mail&amp;rand={$time}" class="picture" alt=""/> <strong>Mail</strong>
 {/if}
 </li>
 <li>
