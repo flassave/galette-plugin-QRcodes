@@ -40,7 +40,6 @@ use Galette\Entity\FieldsConfig;
 use Galette\Entity\Texts;
 use Galette\Repository\Members;
 use Galette\Repository\PdfModels;
-use Galette\Entity\DynamicFields;
 use Galette\Filters\MembersList;
 
 
@@ -68,7 +67,6 @@ $qstring = $_SERVER['HTTP_REFERER'];
 if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	
 	$id_adh = $_GET['id_adh'];
-	$dyn_fields = new DynamicFields();
 
 	$deps = array(
 		'picture'   => true,
@@ -78,25 +76,6 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		'children'  => true
 	);
 	$member = new Adherent((int)$id_adh, $deps);
-
-	// flagging fields visibility
-	if (!version_compare(GALETTE_VERSION, '0.8.3', '<')) {
-	    $fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
-    } else {
-	    $fc = new FieldsConfig($zdb, Adherent::TABLE, $members_fields, $members_fields_cats);
-    }
-	$visibles = $fc->getVisibilities();
-	// declare dynamic field values
-	$adherent['dyn'] = $dyn_fields->getFields('adh', $id_adh, true);
-
-	// - declare dynamic fields for display
-	$disabled['dyn'] = array();
-	$dynamic_fields = $dyn_fields->prepareForDisplay(
-		'adh',
-		$adherent['dyn'],
-		$disabled['dyn'],
-		0
-	);
 
 	$id_m = $member->id;
 
@@ -143,16 +122,12 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	}
 	
 } else {
-	global $zdb;
-	
-	
 	$select = $zdb->select(Adherent::TABLE);
 	$result = $zdb->execute($select);
 	
 	foreach ($result as $r){
 		
 		$id_adh = $r->id_adh;
-		$dyn_fields = new DynamicFields();
 
 		$deps = array(
 			'picture'   => true,
@@ -162,22 +137,6 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 			'children'  => true
 		);
 		$member = new Adherent((int)$id_adh, $deps);
-
-		// flagging fields visibility
-		$fc = new FieldsConfig(Adherent::TABLE, $members_fields, $members_fields_cats);
-		$visibles = $fc->getVisibilities();
-		// declare dynamic field values
-		$adherent['dyn'] = $dyn_fields->getFields('adh', $id_adh, true);
-
-		// - declare dynamic fields for display
-		$disabled['dyn'] = array();
-		$dynamic_fields = $dyn_fields->prepareForDisplay(
-			'adh',
-			$adherent['dyn'],
-			$disabled['dyn'],
-			0
-		);
-
 		$id_m = $member->id;
 
 		//Créer QRcode PassagesDeGrades
