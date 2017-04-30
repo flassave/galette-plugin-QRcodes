@@ -69,7 +69,6 @@ if (!file_exists(PLUGIN_QRCODE_DATA_PATH)) {
 }
 
 //récupération du header de la page précédente
-$qstring = $_SERVER['HTTP_REFERER'];
 
 if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 	
@@ -121,12 +120,6 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		}
 	if (!empty($email)){
 	    QRcode::png("mailto:$email", PLUGIN_QRCODE_DATA_PATH . "$id_adh.mail.png", "L", 4, 4);
-	}
-	
-	//Si appel depuis la liste adhérents, retour à la liste adhérents
-	if (isset($_GET['enr']) AND $_GET['enr'] == 1){
-		header('location: '.$qstring);
-		die();
 	}
 	
 } else {
@@ -187,6 +180,7 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		
 	}
 	
-	header('location: '.$qstring);
-	die();
 }
+
+header('location: ' .$_SERVER['HTTP_REFERER']);
+die();
