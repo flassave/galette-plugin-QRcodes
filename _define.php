@@ -36,11 +36,14 @@
  */
 
 $this->register(
-    'Galette QRCodes',  	  			//Name
-    'Génération de QRcodes',	//Short description
-    'Frédéric LASSAVE',			//Author
-    '1.2.1',					//Version
-    '0.8.2.3',					//Galette compatible version
-    '2017-03-29',				//Release date
-    null						//Permissions needed - not yet implemented
+    'Galette QRCodes',          //Name
+    'Génération de QRcodes',    //Short description
+    'Frédéric LASSAVE',         //Author
+    '1.3.0dev',                 //Version
+    '0.9',                      //Galette compatible version
+    'qrcodes',                  //routing name and translation domain
+    '2017-12-23',               //Release date
+    [   //Permissions needed
+        'generate_qrcode_member'    => 'groupmanager' //FIXME original code does not set access restrictions
+    ]
 );

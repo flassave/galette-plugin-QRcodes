@@ -1,0 +1,16 @@
+#: ../templates/default/menu.tpl:5
+msgid "Create members QRcodes"
+msgstr ""
+
+#: ../templates/default/menu.tpl:4
+msgid "QRcodes generator"
+msgstr ""
+
+#: ../templates/default/menu.tpl:2
+msgid "QRcodes"
+msgstr ""
+
+#: ../templates/default/adh_fiche_action.tpl:9
+msgid "QR codes"
+msgstr ""
+

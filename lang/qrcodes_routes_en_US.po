@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Johan Cwiklinski <johan@x-tnd.be>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: ../_routes.php:92 ../templates/default/adh_fiche_action.tpl:6
+msgid "email"
+msgstr "email"
+
+#: ../_routes.php:44
+msgid "/member"
+msgstr "/member"
+
+#: ../_routes.php:91
+msgid "/show"
+msgstr "/show"
+
+#: ../_routes.php:44
+msgid "/qrcode"
+msgstr "/qrcode"
+
+#: ../_routes.php:91 ../templates/default/adh_fiche_action.tpl:3
+msgid "phone"
+msgstr "phone"

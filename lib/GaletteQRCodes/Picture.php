@@ -104,9 +104,10 @@ class Picture extends GalettePicture
     */
     protected function getDefaultPicture()
     {
-        global $plugins;
-        $this->file_path = $this->plugins->getTemplatesPathFromName('Galette QRCodes') .
-            '/images/empty.png';
+        $this->file_path = realpath(
+            $this->plugins->getTemplatesPathFromName('Galette QRCodes') .
+            '/../../webroot/images/empty.png'
+        );
         $this->format = 'png';
         $this->mime = 'image/png';
         $this->has_picture = false;

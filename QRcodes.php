@@ -141,7 +141,7 @@ if (isset($_GET['id_adh']) AND isset($_GET['enr'])){
 		$id_m = $member->id;
 
 		//Créer QRcode PassagesDeGrades
-		if (!file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
+		if (file_exists(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png")){
 			unlink(PLUGIN_QRCODE_DATA_PATH . "$id_adh.png");
             if (defined('PASSAGESDEGRADES_PREFIX')) {
 			    QRcode::png(PASSAGESDEGRADES_PREFIX . "PassagesDeGrades.php?id_adh=$id_adh", PLUGIN_QRCODE_DATA_PATH . "$id_adh.png", "L", 4, 4);
