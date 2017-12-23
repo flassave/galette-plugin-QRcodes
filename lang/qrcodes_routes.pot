@@ -1,0 +1,20 @@
+#: ../_routes.php:92 ../templates/default/adh_fiche_action.tpl:6
+msgid "email"
+msgstr ""
+
+#: ../_routes.php:44
+msgid "/member"
+msgstr ""
+
+#: ../_routes.php:91
+msgid "/show"
+msgstr ""
+
+#: ../_routes.php:44
+msgid "/qrcode"
+msgstr ""
+
+#: ../_routes.php:91 ../templates/default/adh_fiche_action.tpl:3
+msgid "phone"
+msgstr ""
+
